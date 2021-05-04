@@ -110,9 +110,9 @@ export default function Markets() {
                                             </Grid>
                                         </Link>
                                     </TableCell>
-                                    <TableCell align="right">{row.current_price}</TableCell>
-                                    <TableCell align="right">{row.high_24h}</TableCell>
-                                    <TableCell align="right">{row.low_24h}</TableCell>
+                                    <TableCell align="right">{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(row.current_price)}</TableCell>
+                                    <TableCell align="right">{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(row.high_24h)}</TableCell>
+                                    <TableCell align="right">{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(row.low_24h)}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -121,7 +121,7 @@ export default function Markets() {
             </TableContainer>
             {!isLoading &&
                 <Grid container justify="center" className={classes.pagination}>
-                    <Pagination count={Math.round(allCoins/coin_market_get_params.per_page)} onChange={onPageChange} page={page} />
+                    <Pagination count={Math.round(allCoins / coin_market_get_params.per_page)} onChange={onPageChange} page={page} />
                 </Grid>
             }
         </>

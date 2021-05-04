@@ -11,6 +11,7 @@ import { getCoin } from '../../api/coins';
 import { useParams } from "react-router-dom";
 import useStyles from './style';
 import LoadingTemplate from '../../helpers/loadingTemplate1';
+import { coin_market_get_params } from '../../config/apiParameters';
 
 /**
  * Coins component, displays specific coin based on id from url parameter
@@ -71,8 +72,8 @@ export default function Coins() {
                             <Grid className={classes.information}>{coin.hashing_algorithm ? coin.hashing_algorithm : "Unknown"}</Grid>
                         </Grid>
                         <Grid item xs={12} className={classes.informationGrid}>
-                            <Grid className={classes.label}>Market cap in Euro</Grid>
-                            <Grid className={classes.information}>{new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(coin.market_data.market_cap.eur)}</Grid>
+                            <Grid className={classes.label}>Market cap</Grid>
+                            <Grid className={classes.information}>{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(coin.market_data.market_cap.eur)}</Grid>
                         </Grid>
                         <Grid item xs={12} className={classes.informationGrid}>
                             <Grid className={classes.label}>Genesis Date</Grid>
