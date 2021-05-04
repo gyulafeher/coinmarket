@@ -57,7 +57,6 @@ export default function Markets() {
         let isMounted = true;
         listAllCoins().then((response) => {
             setLoading(false);
-            console.log(response);
             if (isMounted && response.data && response.status === 200) {
                 setAllCoins(response.data.length);
             }
