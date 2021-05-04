@@ -8,9 +8,9 @@ import {
     Paper,
 } from '@material-ui/core';
 import { getCoin } from '../../api/coins';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { useParams } from "react-router-dom";
 import useStyles from './style';
+import LoadingTemplate from '../../helpers/loadingTemplate1';
 
 /**
  * Coins component, displays specific coin based on id from url parameter
@@ -50,11 +50,7 @@ export default function Coins() {
             <h1 className={classes.h1} >Coins</h1>
             <Paper className={classes.paper}>
                 {(isLoading || Object.keys(coin).length === 0) &&
-                    <>
-                        <Skeleton variant="rect" />
-                        <Skeleton variant="text" />
-                        <Skeleton variant="text" />
-                    </>
+                    <LoadingTemplate />
                 }
                 {(!isLoading && Object.keys(coin).length !== 0 && success) &&
                     <Grid container >
