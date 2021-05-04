@@ -12,7 +12,9 @@ import {
     Paper,
     Link
 } from '@material-ui/core';
-import { getCoinMarkets } from '../../api/coins';
+import { Pagination } from '@material-ui/lab';
+
+import { getCoinMarkets, listAllCoins } from '../../api/coins';
 import { coin_market_get_params } from '../../config/apiParameters';
 import useStyles from './style';
 import LoadingTemplate from '../../helpers/loadingTemplate';
@@ -25,17 +27,41 @@ export default function Markets() {
     const classes = useStyles();
     const [markets, setMarkets] = useState([]);
     const [isLoading, setLoading] = useState(false);
+    const [params, setParams] = useState(coin_market_get_params);
+    const [page, setPage] = useState(coin_market_get_params.page);
+    const [allCoins, setAllCoins] = useState(100);
+
+    const onPageChange = (event, newPage) => {
+        params.page = newPage;
+        let newParams = Object.assign({}, params);
+        setParams(newParams);
+        setPage(newPage);
+    }
 
     useEffect(() => {
         let isMounted = true;
         setLoading(true);
-        getCoinMarkets(coin_market_get_params).then((response) => {
+        getCoinMarkets(params).then((response) => {
             setLoading(false);
             if (isMounted && response.data && response.status === 200) {
                 setMarkets(response.data);
             }
         }).catch((error) => {
             setLoading(false);
+            console.error(error);
+        });
+        return () => { isMounted = false }
+    }, [params]);
+
+    useEffect(() => {
+        let isMounted = true;
+        listAllCoins().then((response) => {
+            setLoading(false);
+            console.log(response);
+            if (isMounted && response.data && response.status === 200) {
+                setAllCoins(response.data.length);
+            }
+        }).catch((error) => {
             console.error(error);
         });
         return () => { isMounted = false }
@@ -94,6 +120,11 @@ export default function Markets() {
                     </Table>
                 }
             </TableContainer>
+            {!isLoading &&
+                <Grid container justify="center" className={classes.pagination}>
+                    <Pagination count={Math.round(allCoins/coin_market_get_params.per_page)} onChange={onPageChange} page={page} />
+                </Grid>
+            }
         </>
     );
 }

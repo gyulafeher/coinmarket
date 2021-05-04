@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
             textDecoration: "none",
         }
     },
+    pagination: {
+        paddingBottom: theme.spacing(4)
+    },
     table: {
         minWidth: 500,
     },

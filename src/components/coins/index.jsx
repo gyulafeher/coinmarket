@@ -68,7 +68,7 @@ export default function Coins() {
                         <Grid container item md={6} xs={12} className={classes.informationGrid} alignItems="center">
                             <Link href={coin.links.homepage[0]} target="_blank" rel="noreferrer">{coin.links.homepage[0]}</Link>
                         </Grid>
-                        <Grid className={classes.detailsGrid} xs={12}>Details</Grid>
+                        <Grid className={classes.detailsGrid} item xs={12}>Details</Grid>
                         <Divider className={classes.divider} />
                         <Grid item className={classes.informationGrid}>
                             <Grid className={classes.label}>Hashing algorithm</Grid>

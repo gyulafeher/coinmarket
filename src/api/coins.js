@@ -26,7 +26,7 @@ const getCoinMarkets = (query) => {
 * Get current data (name, price, market, ... including exchange tickers) for a coin
 * @param    {String}  url 
 * @return   {Object}  api response
-* documentation at https://www.coingecko.com/api/documentations/v3#/coins/get_coins_markets
+* documentation at https://www.coingecko.com/api/documentations/v3#/coins/get_coins__id_
 */
 
 const getCoin = (id) => {
@@ -42,6 +42,24 @@ const getCoin = (id) => {
 
 }
 
+/**
+* List all supported coins id, name and symbol (no pagination required)
+* @return   {Object}  api response
+* documentation at https://www.coingecko.com/api/documentations/v3#/coins/get_coins_list
+*/
+
+const listAllCoins = (id) => {
+
+    return axios(buildUrl(apiEndpoints.listCoins, 'get'))
+        .then(response => {
+            return response;
+        })
+        .catch(function (error) {
+            // handle error
+            return error;
+        })
+}
 
 
-export { getCoinMarkets, getCoin };
+
+export { getCoinMarkets, getCoin, listAllCoins };
