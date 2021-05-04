@@ -72,11 +72,18 @@ export default function Markets() {
                                         scope="row"
                                         className={classes.tableHead}
                                     >
-                                        <Grid container alignItems="center">
-                                            <Avatar alt="Coin image" src={row.image} className={classes.small} />
-                                            <Grid className={classes.coinName}> {row.name}</Grid>
-                                            <Chip size="small" label={row.symbol.toUpperCase()} />
-                                        </Grid>
+                                        <Link href={row.id} className={classes.link}>
+                                            <Grid container alignItems="center">
+                                                <Grid container item md={2} xs={3} >
+                                                    <Avatar alt="Coin image" src={row.image} className={classes.avatar} />
+                                                </Grid>
+                                                <Grid container item md={10} xs={9} >
+                                                    <Grid item md={6} xs={12} className={classes.coinName}> {row.name}</Grid>
+                                                    <Grid item md={6} xs={12}><Chip className={classes.chipSymbol} size="small" label={row.symbol.toUpperCase()} /></Grid>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Link>
                                     </TableCell>
                                     <TableCell align="right">{row.current_price}</TableCell>
                                     <TableCell align="right">{row.high_24h}</TableCell>

@@ -18,7 +18,7 @@ const buildQuery = (parameters) => {
 * @return   {String}  url 
 */
 const buildUrlAndPath = (path, parameters) => {
-    return apiEndpoints.base + path + '?' + buildQuery(parameters);
+    return apiEndpoints.base + path + (parameters ? ('?' + buildQuery(parameters)) : "");
 }
 
 
@@ -29,12 +29,11 @@ const buildUrlAndPath = (path, parameters) => {
 * @param    {Object}  parameters 
 * @return   {Object}  api request object
 */
-const buildUrl = (path, method, parameters = []) => {
+const buildUrl = (path, method, parameters = false) => {
 
     let axiosRequest = {
         method: method,
         url: buildUrlAndPath(path, parameters),
-        data: parameters
     }
 
     return axiosRequest;

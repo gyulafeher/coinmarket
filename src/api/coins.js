@@ -4,8 +4,8 @@ import { apiEndpoints } from '../config/apiEndpoints';
 
 /**
 * List all supported coins price, market cap, volume, and market related data
-* @param    {Array}  query 
-* @return   {String} api response
+* @param    {Object}  query 
+* @return   {Object} api response
 * documentation at https://www.coingecko.com/api/documentations/v3#/coins/get_coins_markets
 */
 
@@ -17,10 +17,31 @@ const getCoinMarkets = (query) => {
         })
         .catch(function (error) {
             // handle error
-            console.error(error);
+            return error;
+        })
+
+}
+
+/**
+* Get current data (name, price, market, ... including exchange tickers) for a coin
+* @param    {String}  url 
+* @return   {Object}  api response
+* documentation at https://www.coingecko.com/api/documentations/v3#/coins/get_coins_markets
+*/
+
+const getCoin = (id) => {
+
+    return axios(buildUrl(apiEndpoints.coins + id, 'get'))
+        .then(response => {
+            return response;
+        })
+        .catch(function (error) {
+            // handle error
+            return error;
         })
 
 }
 
 
-export { getCoinMarkets };
+
+export { getCoinMarkets, getCoin };
