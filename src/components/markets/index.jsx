@@ -18,6 +18,7 @@ import { getCoinMarkets, listAllCoins } from '../../api/coins';
 import { coin_market_get_params } from '../../config/apiParameters';
 import useStyles from './style';
 import LoadingTemplate from '../../helpers/loadingTemplate';
+import { numberFormatter } from '../../utils/numberFormatter';
 
 /**
  * Markets component,  displays list of coins using api response
@@ -110,9 +111,9 @@ export default function Markets() {
                                             </Grid>
                                         </Link>
                                     </TableCell>
-                                    <TableCell align="right">{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(row.current_price)}</TableCell>
-                                    <TableCell align="right">{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(row.high_24h)}</TableCell>
-                                    <TableCell align="right">{new Intl.NumberFormat('de-DE', { style: 'currency', currency: coin_market_get_params.vs_currency }).format(row.low_24h)}</TableCell>
+                                    <TableCell align="right">{numberFormatter(coin_market_get_params.vs_currency, row.current_price)}</TableCell>
+                                    <TableCell align="right">{numberFormatter(coin_market_get_params.vs_currency, row.high_24h)}</TableCell>
+                                    <TableCell align="right">{numberFormatter(coin_market_get_params.vs_currency, row.low_24h)}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

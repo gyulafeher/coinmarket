@@ -2,14 +2,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     coinName: {
-        margin: theme.spacing(2),
+        margin: theme.spacing(0, 2),
         [theme.breakpoints.down('sm')]: {
             margin: theme.spacing(2.5),
         }
     },
-    detailsGrid:{
+    detailsGrid: {
         fontWeight: "bold",
-        margin:theme.spacing(1),
+        marginTop: theme.spacing(4),
     },
     descriptionGrid: {
         margin: theme.spacing(2, 0)
@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
     descriptionText: {
         paddingTop: theme.spacing(2)
     },
-    divider:{
-        width:"100%",
+    divider: {
+        width: "100%",
     },
     h1: {
         fontSize: "1.5em",
